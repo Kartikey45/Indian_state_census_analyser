@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace IndianStateCensusAnalyser
 {
-    // Main class
+    //Main class
     public class Program
     {
-        // Main method
-        public static void Main(string[] args)
+        //Main method
+        public static void Main()
         {
-            Console.WriteLine("Welcome to Indian State Census Analyser Problem");
+            StateCensusAnalyser analyser = new StateCensusAnalyser();
+            Console.WriteLine(analyser.loadCsvData("C:/Users/User/source/repos/StateCensusData.csv"));
             Console.ReadKey();
         }
     }
