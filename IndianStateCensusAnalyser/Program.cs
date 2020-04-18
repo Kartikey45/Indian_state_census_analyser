@@ -13,7 +13,7 @@ namespace IndianStateCensusAnalyser
             StateCensusAnalyser analyser = new StateCensusAnalyser();
             try
             {
-                analyser.loadCsvData("C:/Users/User/source/repos/StateCensusData.csv");
+                analyser.loadCsvData("C:/Users/User/source/repos/StateCensusData.txt");
             }
             catch(CsvCustomException ex)
             {

@@ -17,9 +17,13 @@ namespace IndianStateCensusAnalyser
         {
             Console.WriteLine("Welcome to Indian State Census Analyser Problem");
 
+            if(Path.GetExtension(filepath) !=  ".csv")
+            {
+                throw (new CsvCustomException("Incorrect file Extension"));
+            }
             if (filepath != "C:/Users/User/source/repos/StateCensusData.csv")
             {
-                throw (new CsvCustomException("Entered incorrect file name"));
+                throw (new CsvCustomException("Entered incorrect file Path"));
             }
             else
             {

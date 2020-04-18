@@ -16,13 +16,23 @@ namespace IndianStateCensusAnalyserTest
             Assert.AreEqual(30, totalRecords);
         }
 
-        //TC 1.2 Csv file if incorrect returns a custom exception
+        //TC 1.2 file path if incorrect returns a custom exception
         [Test]
-        public void incorrectFile()
+        public void incorrectFilePath()
         {
             var analyser = new StateCensusAnalyser();
-            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvData("C:/Users/User/source/repos/StateCensusData"));
-            Assert.AreEqual("Entered incorrect file name", ex.Message);
+            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvData("C:/Users/User/source/repos/IndianStateCensusAnalyser/StateCensusData.csv"));
+            Assert.AreEqual("Entered incorrect file Path", ex.Message);
         }
+
+        //TC 1.3 file extension if incorrect returns a custom extension
+        [Test]
+        public void incorrectFileExtension()
+        {
+            var analyser = new StateCensusAnalyser();
+            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvData("C:/Users/User/source/repos/StateCensusData.txt"));
+            Assert.AreEqual("Incorrect file Extension", ex.Message);
+        }
+
     }
 }
