@@ -6,7 +6,7 @@ namespace IndianStateCensusAnalyserTest
     //Test class
     public class CensusAnalyserTests
     {
-        //check to ensure the number of records matches
+        //TC 1.1 check to ensure the number of records matches
         [Test]
         public void recordMatches()
         {
