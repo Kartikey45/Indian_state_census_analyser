@@ -11,11 +11,11 @@ namespace IndianStateCensusAnalyserTest
         [Test]
         public void recordMatches()
         {
-            StateCensusAnalyser analyser = new StateCensusAnalyser();
-            int totalRecords = analyser.loadCsvData("C:/Users/User/source/repos/StateCensusData.csv");
+            CsvStateCensus analyser = new CsvStateCensus();
+            int totalRecords = analyser.LoadCsvData("C:/Users/User/source/repos/StateCensusDataCopy.csv");
             Assert.AreEqual(30, totalRecords);
         }
-
+        
         //TC 1.2 file path if incorrect returns a custom exception
         [Test]
         public void incorrectFilePath()
@@ -34,5 +34,13 @@ namespace IndianStateCensusAnalyserTest
             Assert.AreEqual("Incorrect file Extension", ex.Message);
         }
 
+        //TC 1.4 Delimeter if incorrect returns a custom exception
+        [Test]
+        public void incorrectDelimeter()
+        {
+            var analyser = new StateCensusAnalyser();
+            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvData("C:/Users/User/source/repos/StateCensusData.csv"));
+            Assert.AreEqual("Delimeter is incorrect", ex.Message);
+        }
     }
 }

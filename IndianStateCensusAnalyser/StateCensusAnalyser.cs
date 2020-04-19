@@ -9,12 +9,16 @@ using LumenWorks.Framework.IO.Csv;
 
 namespace IndianStateCensusAnalyser
 {
-    // Main class
+    
     public class StateCensusAnalyser
     {
-        //load .csv data
+        //load state Census Csv data
         public int loadCsvData(string filepath)
         {
+            //variable initialized
+            char delimeter = ',';
+            int count = 0;
+
             Console.WriteLine("Welcome to Indian State Census Analyser Problem");
 
             if(Path.GetExtension(filepath) !=  ".csv")
@@ -25,32 +29,24 @@ namespace IndianStateCensusAnalyser
             {
                 throw (new CsvCustomException("Entered incorrect file Path"));
             }
+            
             else
             {
-                //variable initialize
-                int count = 0;
-
-                var CsvData = File.ReadAllLines(filepath);
-                var file = from CsvFile in CsvData
-                           let data = CsvFile.Split(',')
-                           select new
-                           {
-                               State = data[0],
-                               Population = data[1],
-                               AreaInSqKm = data[2],
-                               DensityPerSqKm = data[3]
-                           };
-
+                string[] CsvData = File.ReadAllLines(filepath);
+               
                 //Iterate the records
-                foreach (var fileData in file)
+                foreach (var fileData in CsvData)
                 {
-                    Console.WriteLine(fileData.State + "|" + fileData.Population + "|" + fileData.AreaInSqKm + "|" + fileData.DensityPerSqKm);
+                    if(!fileData.Contains(delimeter))
+                    {
+                        throw (new CsvCustomException("Delimeter is incorrect"));
+                    }
                     count++;
                 }
 
                 //Display total records
                 Console.Write("Total number of records are : " + count);
-                return count;
+                return count; 
             }
         }   
     }
