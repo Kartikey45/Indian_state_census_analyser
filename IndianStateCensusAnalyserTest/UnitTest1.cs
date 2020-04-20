@@ -15,14 +15,14 @@ namespace IndianStateCensusAnalyserTest
             int totalRecords = analyser.LoadCsvData("C:/Users/User/source/repos/StateCensusDataCopy.csv");
             Assert.AreEqual(30, totalRecords);
         }
-        
+
         //TC 1.2 file path if incorrect returns a custom exception
         [Test]
         public void incorrectFilePath()
         {
             var analyser = new StateCensusAnalyser();
             var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvData("C:/Users/User/source/repos/IndianStateCensusAnalyser/StateCensusData.csv"));
-            Assert.AreEqual("Entered incorrect file Path", ex.Message);
+            Assert.AreEqual("Incorrect file Path", ex.Message);
         }
 
         //TC 1.3 file extension if incorrect returns a custom extension
@@ -40,7 +40,16 @@ namespace IndianStateCensusAnalyserTest
         {
             var analyser = new StateCensusAnalyser();
             var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvData("C:/Users/User/source/repos/StateCensusData.csv"));
-            Assert.AreEqual("Delimeter is incorrect", ex.Message);
+            Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
+        }
+
+        //TC 1.5 Header if incorrect returns a custom exception
+        [Test]
+        public void incorrectHeader()
+        {
+            var analyser = new StateCensusAnalyser();
+            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvData("C:/Users/User/source/repos/StateCensusData.csv"));
+            Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
     }
 }

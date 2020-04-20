@@ -15,7 +15,7 @@ namespace IndianStateCensusAnalyser
             {
                 analyser.loadCsvData("C:/Users/User/source/repos/StateCensusData.csv");
             }
-            catch(CsvCustomException ex)
+            catch (CsvCustomException ex)
             {
                 Console.WriteLine("CsvCustomException : {0}", ex.Message);
             }

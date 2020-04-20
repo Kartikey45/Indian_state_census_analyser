@@ -4,12 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LumenWorks.Framework.IO.Csv;
+
+using CsvHelper;
 
 
 namespace IndianStateCensusAnalyser
 {
-    
+
     public class StateCensusAnalyser
     {
         //load state Census Csv data
@@ -21,33 +22,35 @@ namespace IndianStateCensusAnalyser
 
             Console.WriteLine("Welcome to Indian State Census Analyser Problem");
 
-            if(Path.GetExtension(filepath) !=  ".csv")
+            if (Path.GetExtension(filepath) != ".csv")
             {
                 throw (new CsvCustomException("Incorrect file Extension"));
             }
             if (filepath != "C:/Users/User/source/repos/StateCensusData.csv")
             {
-                throw (new CsvCustomException("Entered incorrect file Path"));
+                throw (new CsvCustomException("Incorrect file Path"));
             }
-            
+
             else
             {
+
                 string[] CsvData = File.ReadAllLines(filepath);
-               
+                
                 //Iterate the records
                 foreach (var fileData in CsvData)
                 {
-                    if(!fileData.Contains(delimeter))
+                    if ((!fileData.Contains(delimeter) || CsvData[0] != "State,Population,AreaInSqKm,DensityPerSqKm") ||
+                        (!fileData.Contains(delimeter) && CsvData[0] != "State,Population,AreaInSqKm,DensityPerSqKm"))
                     {
-                        throw (new CsvCustomException("Delimeter is incorrect"));
+                        throw (new CsvCustomException("Delimeter or Header is incorrect"));
                     }
                     count++;
                 }
 
                 //Display total records
                 Console.Write("Total number of records are : " + count);
-                return count; 
+                return count;
             }
-        }   
+        }
     }
 }
