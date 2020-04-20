@@ -10,16 +10,9 @@ namespace IndianStateCensusAnalyser
         //Main method
         public static void Main()
         {
-            StateCensusAnalyser analyser = new StateCensusAnalyser();
-            try
-            {
-                analyser.loadCsvData("C:/Users/User/source/repos/StateCensusData.csv");
-            }
-            catch (CsvCustomException ex)
-            {
-                Console.WriteLine("CsvCustomException : {0}", ex.Message);
-            }
-            Console.ReadKey();
+            CsvStates census = new CsvStates();
+            Console.WriteLine(census.LoadCsvData("C:/Users/User/source/repos/StateCode.csv"));
+            Console.ReadKey();        
         }
     }
 }
