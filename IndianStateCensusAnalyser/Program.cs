@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static IndianStateCensusAnalyser.CsvStates;
 
 namespace IndianStateCensusAnalyser
 {
@@ -11,7 +12,8 @@ namespace IndianStateCensusAnalyser
         public static void Main()
         {
             CsvStates census = new CsvStates();
-            Console.WriteLine(census.LoadCsvData("C:/Users/User/source/repos/StateCode.csv"));
+            CsvFile csv = new CsvFile(census.LoadCsvData);
+            csv.Invoke("C:/Users/User/source/repos/StateCodeCopy.csv");
             Console.ReadKey();        
         }
     }

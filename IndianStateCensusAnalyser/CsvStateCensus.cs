@@ -11,7 +11,10 @@ namespace IndianStateCensusAnalyser
     // Load .Csv data
     public class CsvStateCensus
     {
-        public int LoadCsvData(string filepath)
+        //Deligate initialized
+        public delegate object CsvFile(string filepath);
+
+        public object LoadCsvData(string filepath)
         {
             //variable initialize
             int count = 0;

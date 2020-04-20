@@ -11,7 +11,10 @@ namespace IndianStateCensusAnalyser
     //load .Csv data of State Code 
     public class CsvStates
     {
-        public int LoadCsvData(string filepath)
+        //Deligate initialized
+        public delegate object CsvFile(string filepath);
+
+        public object LoadCsvData(string filepath)
         {
             //variable initialize
             int count = 0;
@@ -37,7 +40,7 @@ namespace IndianStateCensusAnalyser
             }
 
             //Display total records
-            Console.Write("Total number of records are : ");
+            Console.Write("Total number of records are : " + count);
             return count;
         }
     }
