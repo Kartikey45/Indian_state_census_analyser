@@ -51,5 +51,50 @@ namespace IndianStateCensusAnalyserTest
             var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvData("C:/Users/User/source/repos/StateCensusData.csv"));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
+
+        //TC 2.1 check to ensure the number of records matches
+        [Test]
+        public void recordMatchesForStateCode()
+        {
+            CsvStates analyser = new CsvStates();
+            int totalRecords = analyser.LoadCsvData("C:/Users/User/source/repos/StateCodeCopy.csv");
+            Assert.AreEqual(38, totalRecords);
+        }
+
+        //TC 2.2 file path if incorrect returns a custom exception
+        [Test]
+        public void incorrectFilePathForStateCode()
+        {
+            var analyser = new StateCensusAnalyser();
+            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvStateCodeData("C:/Users/User/source/repos/IndianStateCensusAnalyser/StateCode.csv"));
+            Assert.AreEqual("Incorrect file Path", ex.Message);
+        }
+
+        //TC 2.3 file extension if incorrect returns a custom extension
+        [Test]
+        public void incorrectFileExtensionForStateCode()
+        {
+            var analyser = new StateCensusAnalyser();
+            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvStateCodeData("C:/Users/User/source/repos/StateCode.txt"));
+            Assert.AreEqual("Incorrect file Extension", ex.Message);
+        }
+
+        //TC 2.4 Delimeter if incorrect returns a custom exception
+        [Test]
+        public void incorrectDelimeterForStateCode()
+        {
+            var analyser = new StateCensusAnalyser();
+            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvStateCodeData("C:/Users/User/source/repos/StateCode.csv"));
+            Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
+        }
+
+        //TC 2.5 Header if incorrect returns a custom exception
+        [Test]
+        public void incorrectHeaderForStateCode()
+        {
+            var analyser = new StateCensusAnalyser();
+            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().loadCsvStateCodeData("C:/Users/User/source/repos/StateCode.csv"));
+            Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
+        }
     }
 }
