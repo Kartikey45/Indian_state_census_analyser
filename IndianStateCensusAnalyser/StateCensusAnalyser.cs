@@ -13,11 +13,12 @@ namespace IndianStateCensusAnalyser
 
     public class StateCensusAnalyser
     {
+        
         //Deligate initialized
         public delegate object CsvFile(string filepath);
 
         //load state Census Csv data
-        public object loadCsvData(string filepath)
+        public object LoadCsvData(string filepath)
         {
             //variable initialized
             char delimeter = ',';
@@ -55,6 +56,8 @@ namespace IndianStateCensusAnalyser
                 return count;
             }
         }
+
+        //Load State code Csv data 
         public object loadCsvStateCodeData(string filepath)
         {
             //variable initialized

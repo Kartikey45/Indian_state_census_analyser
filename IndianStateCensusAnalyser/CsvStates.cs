@@ -9,18 +9,22 @@ using LumenWorks.Framework.IO.Csv;
 namespace IndianStateCensusAnalyser
 {
     //load .Csv data of State Code 
-    public class CsvStates
+    public class CsvStates : CsvBuilder
     {
+        string CsvFilePath;
+        
         //Deligate initialized
         public delegate object CsvFile(string filepath);
 
         public object LoadCsvData(string filepath)
         {
+            CsvFilePath = filepath;
+
             //variable initialize
             int count = 0;
 
             //Read Csv file 
-            string[] CsvData = File.ReadAllLines(filepath);
+            string[] CsvData = File.ReadAllLines(CsvFilePath);
 
             var file = from CsvFile in CsvData
                        let data = CsvFile.Split(',')

@@ -23,7 +23,7 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectFilePath()
         {
             var analyser = new StateCensusAnalyser();
-            CsvFile csv = new CsvFile(analyser.loadCsvData);
+            CsvFile csv = new CsvFile(analyser.LoadCsvData);
             var ex = Assert.Throws<CsvCustomException>(() => csv.Invoke("C:/Users/User/source/repos/IndianStateCensusAnalyser/StateCensusData.csv"));
             Assert.AreEqual("Incorrect file Path", ex.Message);
         }
@@ -33,7 +33,7 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectFileExtension()
         {
             var analyser = new StateCensusAnalyser();
-            CsvFile csv = new CsvFile(analyser.loadCsvData);
+            CsvFile csv = new CsvFile(analyser.LoadCsvData);
             var ex = Assert.Throws<CsvCustomException>(() => csv.Invoke("C:/Users/User/source/repos/StateCensusData.txt"));
             Assert.AreEqual("Incorrect file Extension", ex.Message);
         }
@@ -43,7 +43,7 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectDelimeter()
         {
             var analyser = new StateCensusAnalyser();
-            CsvFile csv = new CsvFile(analyser.loadCsvData);
+            CsvFile csv = new CsvFile(analyser.LoadCsvData);
             var ex = Assert.Throws<CsvCustomException>(() => csv.Invoke("C:/Users/User/source/repos/StateCensusData.csv"));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
@@ -53,7 +53,7 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectHeader()
         {
             var analyser = new StateCensusAnalyser();
-            CsvFile csv = new CsvFile(analyser.loadCsvData);
+            CsvFile csv = new CsvFile(analyser.LoadCsvData);
             var ex = Assert.Throws<CsvCustomException>(() => csv.Invoke("C:/Users/User/source/repos/StateCensusData.csv"));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
