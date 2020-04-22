@@ -18,6 +18,7 @@ namespace IndianStateCensusAnalyser
 
         public object LoadCsvData(string filepath)
         {
+            //Variable Initialized
             CsvFilePath = filepath;
 
             //variable initialize

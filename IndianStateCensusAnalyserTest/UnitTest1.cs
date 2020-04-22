@@ -73,7 +73,7 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectFilePathForStateCode()
         {
             var analyser = new StateCensusAnalyser();
-            CsvFile csv = new CsvFile(analyser.loadCsvStateCodeData);
+            CsvFile csv = new CsvFile(analyser.LoadCsvData);
             var ex = Assert.Throws<CsvCustomException>(() => csv.Invoke("C:/Users/User/source/repos/IndianStateCensusAnalyser/StateCode.csv"));
             Assert.AreEqual("Incorrect file Path", ex.Message);
         }
@@ -83,7 +83,7 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectFileExtensionForStateCode()
         {
             var analyser = new StateCensusAnalyser();
-            CsvFile csv = new CsvFile(analyser.loadCsvStateCodeData);
+            CsvFile csv = new CsvFile(analyser.LoadCsvData);
             var ex = Assert.Throws<CsvCustomException>(() => csv.Invoke("C:/Users/User/source/repos/StateCode.txt"));
             Assert.AreEqual("Incorrect file Extension", ex.Message);
         }
@@ -93,7 +93,7 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectDelimeterForStateCode()
         {
             var analyser = new StateCensusAnalyser();
-            CsvFile csv = new CsvFile(analyser.loadCsvStateCodeData);
+            CsvFile csv = new CsvFile(analyser.LoadCsvData);
             var ex = Assert.Throws<CsvCustomException>(() => csv.Invoke("C:/Users/User/source/repos/StateCode.csv"));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
@@ -103,7 +103,7 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectHeaderForStateCode()
         {
             var analyser = new StateCensusAnalyser();
-            CsvFile csv = new CsvFile(analyser.loadCsvStateCodeData);
+            CsvFile csv = new CsvFile(analyser.LoadCsvData);
             var ex = Assert.Throws<CsvCustomException>(() => csv.Invoke("C:/Users/User/source/repos/StateCode.csv"));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }

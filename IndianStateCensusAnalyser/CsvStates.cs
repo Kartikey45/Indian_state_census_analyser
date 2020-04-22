@@ -11,6 +11,7 @@ namespace IndianStateCensusAnalyser
     //load .Csv data of State Code 
     public class CsvStates : CsvBuilder
     {
+        //Variable Initialized
         string CsvFilePath;
         
         //Deligate initialized
