@@ -13,13 +13,17 @@ namespace IndianStateCensusAnalyser
     {
         //Variable Initialized
         string CsvFilePath;
-        
-        //Deligate initialized
-        public delegate object CsvFile(string filepath);
+        private string StateCensusFileHeader;
+        private string StateCodeFileHeader;
 
-        public object LoadCsvData(string filepath)
+        //Deligate initialized
+        public delegate object CsvFile(string filepath, string StateCensusHeader, string StateCodeHeader);
+
+        public object LoadCsvData(string filepath, string StateCensusHeader, string StateCodeHeader)
         {
             CsvFilePath = filepath;
+            StateCensusFileHeader = StateCensusHeader;
+            StateCodeFileHeader = StateCodeHeader;
 
             //variable initialize
             int count = 0;

@@ -7,19 +7,23 @@ using System.Threading.Tasks;
 
 namespace IndianStateCensusAnalyser
 {
-    public class StateCensusAnalyser
+    public class StateCensusAnalyser : CsvBuilder
     {
         //Variable Initialized
-        string CsvFilePath;
+        private string CsvFilePath;
+        private string StateCensusFileHeader;
+        private string StateCodeFileHeader;
 
         //Deligate initialized
-        public delegate object CsvFile(string filepath);
+        public delegate object CsvFile(string filepath, string StateCensusHeader, string StateCodeHeader);
 
         //load state Census Csv data
-        public object LoadCsvData(string filepath)
+        public object LoadCsvData(string filepath, string StateCensusHeader, string StateCodeHeader)
         {
             //variable initialized
             CsvFilePath = filepath;
+            StateCensusFileHeader = StateCensusHeader;
+            StateCodeFileHeader = StateCodeHeader;
             char delimeter = ',';
             int count = 0;
 
@@ -44,10 +48,10 @@ namespace IndianStateCensusAnalyser
                 foreach (var fileData in CsvData)
                 {
                     if (
-                        ((!fileData.Contains(delimeter) || CsvData[0] != "State,Population,AreaInSqKm,DensityPerSqKm") ||
-                        (!fileData.Contains(delimeter) && CsvData[0] != "State,Population,AreaInSqKm,DensityPerSqKm")) &&
-                            ((!fileData.Contains(delimeter) || CsvData[0] != "SrNo,StateName,TIN,StateCode") ||
-                            (!fileData.Contains(delimeter) && CsvData[0] != "SrNo,StateName,TIN,StateCode")) 
+                        ((!fileData.Contains(delimeter) || CsvData[0] != StateCensusFileHeader) ||
+                        (!fileData.Contains(delimeter) && CsvData[0] != StateCensusFileHeader)) &&
+                            ((!fileData.Contains(delimeter) || CsvData[0] != StateCodeFileHeader) ||
+                            (!fileData.Contains(delimeter) && CsvData[0] != StateCodeFileHeader)) 
                             )
                     {
                         throw (new CsvCustomException("Delimeter or Header is incorrect"));

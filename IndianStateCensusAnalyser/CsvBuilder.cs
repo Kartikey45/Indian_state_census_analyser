@@ -7,6 +7,6 @@ namespace IndianStateCensusAnalyser
     //Interface 
     public interface CsvBuilder
     {
-        public object LoadCsvData(string path);
+        public object LoadCsvData(string path, string header1, string header2);
     }
 }

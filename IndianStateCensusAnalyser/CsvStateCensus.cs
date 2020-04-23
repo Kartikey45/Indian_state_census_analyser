@@ -12,14 +12,18 @@ namespace IndianStateCensusAnalyser
     public class CsvStateCensus : CsvBuilder
     {
         string CsvFilePath;
+        private string StateCensusFileHeader;
+        private string StateCodeFileHeader;
 
         //Deligate initialized
-        public delegate object CsvFile(string filepath);
+        public delegate object CsvFile(string filepath, string StateCensusHeader, string StateCodeHeader);
 
-        public object LoadCsvData(string filepath)
+        public object LoadCsvData(string filepath, string StateCensusHeader, string StateCodeHeader)
         {
             //Variable Initialized
             CsvFilePath = filepath;
+            StateCensusFileHeader = StateCensusHeader;
+            StateCodeFileHeader = StateCodeHeader;
 
             //variable initialize
             int count = 0;
