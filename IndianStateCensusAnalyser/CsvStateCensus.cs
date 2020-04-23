@@ -4,14 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LumenWorks.Framework.IO.Csv;
 
 namespace IndianStateCensusAnalyser
 {
     // Load .Csv data
     public class CsvStateCensus : CsvBuilder
     {
-        string CsvFilePath;
+        private string CsvFilePath;
         private string StateCensusFileHeader;
         private string StateCodeFileHeader;
 
@@ -28,6 +27,7 @@ namespace IndianStateCensusAnalyser
             //variable initialize
             int count = 0;
             Console.WriteLine("Welcome to Indian State Census Analyser Problem");
+            
             
             //Read .Csv file
             var reader = new StreamReader(File.OpenRead(CsvFilePath));
@@ -46,7 +46,7 @@ namespace IndianStateCensusAnalyser
                 count++;
                 Console.WriteLine(line);
             }
-
+            
             //Display total records
             Console.Write("Total number of records are : ");
             return count;

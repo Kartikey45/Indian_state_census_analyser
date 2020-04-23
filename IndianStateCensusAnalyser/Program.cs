@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using ChoETL;
+using System.Linq;
 using System.Text;
-using static IndianStateCensusAnalyser.CsvStates;
 
 namespace IndianStateCensusAnalyser
 {
@@ -11,10 +13,14 @@ namespace IndianStateCensusAnalyser
         //Main method
         public static void Main()
         {
-            CsvStates Census = new CsvStates();
-            object record = Census.LoadCsvData("C:/Users/User/source/repos/StateCodeCopy.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode");
-            Console.WriteLine(record);
-            Console.ReadKey();
+            Console.WriteLine("Welcome to indian state census analyser problem");
+            Analyser analyser = new Analyser();
+
+            //sorting csv data
+            analyser.CsvSort("C:/Users/User/source/repos/StateCensusDataCopy.csv");
+
+            //converting csv data to json formate
+            analyser.CsvToJSONconvert("C:/Users/User/source/repos/StateCensusDataCopy.csv", "C:/Users/User/source/repos/StateCensusDataCopy.json");
         }
     }
 }

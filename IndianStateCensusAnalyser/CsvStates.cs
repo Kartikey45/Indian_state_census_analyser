@@ -12,7 +12,7 @@ namespace IndianStateCensusAnalyser
     public class CsvStates : CsvBuilder
     {
         //Variable Initialized
-        string CsvFilePath;
+        private string CsvFilePath;
         private string StateCensusFileHeader;
         private string StateCodeFileHeader;
 
