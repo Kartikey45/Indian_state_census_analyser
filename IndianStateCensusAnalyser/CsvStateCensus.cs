@@ -28,26 +28,27 @@ namespace IndianStateCensusAnalyser
             //variable initialize
             int count = 0;
             Console.WriteLine("Welcome to Indian State Census Analyser Problem");
-            string[] CsvData = File.ReadAllLines(CsvFilePath);
-            var file = from CsvFile in CsvData
-                       let data = CsvFile.Split(',')
-                       select new
-                       {
-                           State = data[0],
-                           Population = data[1],
-                           AreaInSqKm = data[2],
-                           DensityPerSqKm = data[3]
-                       };
+            
+            //Read .Csv file
+            var reader = new StreamReader(File.OpenRead(CsvFilePath));
 
-            //Iterate the records
-            foreach (var fileData in file)
+            List<string> listA = new List<string>();
+            while (!reader.EndOfStream)
             {
-                Console.WriteLine(fileData.State + "|" + fileData.Population + "|" + fileData.AreaInSqKm + "|" + fileData.DensityPerSqKm);
+
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+
+                listA.Add(values[0]);
+                listA.Add(values[1]);
+                listA.Add(values[2]);
+                listA.Add(values[3]);
                 count++;
+                Console.WriteLine(line);
             }
 
             //Display total records
-            Console.Write("Total number of records are : " + count);
+            Console.Write("Total number of records are : ");
             return count;
         }
     }

@@ -28,28 +28,26 @@ namespace IndianStateCensusAnalyser
             //variable initialize
             int count = 0;
 
-            //Read Csv file 
-            string[] CsvData = File.ReadAllLines(CsvFilePath);
+            //Read .Csv file
+            var reader = new StreamReader(File.OpenRead(CsvFilePath));
 
-            var file = from CsvFile in CsvData
-                       let data = CsvFile.Split(',')
-                       select new
-                       {
-                           SrNo = data[0],
-                           StateName = data[1],
-                           TIN = data[2],
-                           StateCode = data[3],
-                       };
-
-            //Iterate the records
-            foreach (var fileData in file)
+            List<string> listB = new List<string>();
+            while (!reader.EndOfStream)
             {
-                Console.WriteLine(fileData.SrNo + "|" + fileData.StateName + "|" + fileData.TIN + "|" + fileData.StateCode);
+
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+
+                listB.Add(values[0]);
+                listB.Add(values[1]);
+                listB.Add(values[2]);
+                listB.Add(values[3]);
                 count++;
+                Console.WriteLine(line);
             }
 
             //Display total records
-            Console.Write("Total number of records are : " + count);
+            Console.Write("Total number of records are : ");
             return count;
         }
     }
