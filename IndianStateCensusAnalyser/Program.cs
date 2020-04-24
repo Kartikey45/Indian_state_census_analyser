@@ -13,14 +13,17 @@ namespace IndianStateCensusAnalyser
         //Main method
         public static void Main()
         {
-            Console.WriteLine("Welcome to indian state census analyser problem");
-            Analyser analyser = new Analyser();
+            
 
-            //sorting csv data
-            analyser.CsvSort("C:/Users/User/source/repos/StateCensusDataCopy.csv");
-
-            //converting csv data to json formate
-            analyser.CsvToJSONconvert("C:/Users/User/source/repos/StateCensusDataCopy.csv", "C:/Users/User/source/repos/StateCensusDataCopy.json");
+            
+            //Print Welcome To India States Census Analyser
+            Console.WriteLine("Welcome To India States Census Analyser...!");
+            Analyser stateCensus = new Analyser();
+            //Sorting CSV Data
+            stateCensus.SortingCSVFile(@"C:/Users/User/source/repos/StateCensusDataCopy.csv");
+            //Converting CSV To JSON
+            stateCensus.ConvertingCSVToJSON(@"C:/Users/User/source/repos/StateCensusDataCopy.csv", @"StateCensusDataCopy.json");
+            
         }
     }
 }
