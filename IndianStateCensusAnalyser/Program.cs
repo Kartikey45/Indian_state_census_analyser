@@ -12,18 +12,15 @@ namespace IndianStateCensusAnalyser
     {
         //Main method
         public static void Main()
-        {
-            
-
-            
-            //Print Welcome To India States Census Analyser
+        { 
             Console.WriteLine("Welcome To India States Census Analyser...!");
             Analyser stateCensus = new Analyser();
+
             //Sorting CSV Data
-            stateCensus.SortingCSVFile(@"C:/Users/User/source/repos/StateCensusDataCopy.csv");
+            stateCensus.SortingCSVFile(@"C:/Users/User/source/repos/StateCodeCopy.csv");
+
             //Converting CSV To JSON
-            stateCensus.ConvertingCSVToJSON(@"C:/Users/User/source/repos/StateCensusDataCopy.csv", @"StateCensusDataCopy.json");
-            
+            stateCensus.ConvertingCSVToJSON(@"C:/Users/User/source/repos/StateCodeCopy.csv", @"StateCodeCopy.json");
         }
     }
 }
