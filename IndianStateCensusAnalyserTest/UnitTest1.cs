@@ -97,5 +97,39 @@ namespace IndianStateCensusAnalyserTest
             var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().LoadCsvData("C:/Users/User/source/repos/StateCode.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode"));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
+
+        //Test case to check start and end data of state census JSON data
+        [Test]
+        public void checkStartOfStateCensus()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataCopy.json","State",0);
+            Assert.AreEqual("Andhra Pradesh",checkResult);
+        }
+
+        [Test]
+        public void checkEndOfStateCensus()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataCopy.json","State",1);
+            Assert.AreEqual("West Bengal",checkResult);
+        }
+
+        //Test case to check start and end data of state code JSON data
+        [Test]
+        public void checkStartOfStateCode()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCodeCopy.json","StateCode", 0);
+            Assert.AreEqual("AD",checkResult);
+        }
+
+        [Test]
+        public void checkEndOfStateCode()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCodeCopy.json", "StateCode", 1);
+            Assert.AreEqual("WB", checkResult);
+        }
     }
 }

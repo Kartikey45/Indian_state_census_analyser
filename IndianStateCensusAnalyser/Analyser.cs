@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using LumenWorks.Framework.IO.Csv;
 using ChoETL;
+using Newtonsoft.Json.Linq;
 
 namespace IndianStateCensusAnalyser
 {
@@ -45,6 +46,27 @@ namespace IndianStateCensusAnalyser
 
             IEnumerable<string> query = from line in data let x = line.Split(',') orderby x[3] select line;
             File.WriteAllLines(path, lines.Take(1).Concat(query.ToArray()));
+        }
+
+        //check starting data and ending data of JSON data
+        public string CheckData(string path, string key, int StateName)
+        {
+            string data = File.ReadAllText(path);
+            var jsonData = JArray.Parse(data);
+            //Staring Data
+            if (StateName == 0)
+            {
+                // Return Starting Data
+                return jsonData[0][key].ToString();
+            }
+            //Ending Data
+            if (StateName == 1)
+            {
+                // Return Ending Data
+                return jsonData[jsonData.Count - 1][key].ToString();
+            }
+            // Return Null
+            return null;
         }
     }
 }
