@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ChoETL;
 using System.Linq;
 using System.Text;
+using static IndianStateCensusAnalyser.CsvStates;
 
 namespace IndianStateCensusAnalyser
 {
@@ -13,9 +14,9 @@ namespace IndianStateCensusAnalyser
         //Main method
         public static void Main()
         {
-            
             CsvStates census = new CsvStates();
-            census.LoadCsvData();
+            CsvStateCodeDeligate deligate = new CsvStateCodeDeligate(census.LoadCsvData);
+            deligate.Invoke();
             Console.ReadKey();
         }
     }

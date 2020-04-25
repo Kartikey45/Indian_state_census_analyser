@@ -1,19 +1,25 @@
 using IndianStateCensusAnalyser;
 using NUnit.Framework;
 using System;
+using static IndianStateCensusAnalyser.CsvStateCensus;
 using static IndianStateCensusAnalyser.CsvStates;
+using static IndianStateCensusAnalyser.StateCensusAnalyser;
 
 namespace IndianStateCensusAnalyserTest
 {
     //Test class
     public class CensusAnalyserTests
     {
+        public string CsvStateCensusHeader = "State,Population,AreaInSqKm,DensityPerSqKm";
+        public string CsvStateCodeHeader = "SrNo,StateName,TIN,StateCode";
+
         //TC 1.1 check to ensure the number of records matches
         [Test]
         public void recordMatches()
         {
             CsvStateCensus analyser = new CsvStateCensus();
-            object totalRecords = analyser.LoadCsvData();
+            CsvStateCensusDeligate deligate = new CsvStateCensusDeligate(analyser.LoadCsvData);
+            object totalRecords = deligate.Invoke();
             Assert.AreEqual(30, totalRecords);
         }
 
@@ -22,7 +28,8 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectFilePath()
         {
             var analyser = new StateCensusAnalyser();
-            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().LoadCsvData("C:/Users/User/source/repos/IndianStateCensusAnalyser/StateCensusData.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode"));
+            StateCensusAnalyserDelegate deligate = new StateCensusAnalyserDelegate(analyser.LoadCsvData);
+            var ex = Assert.Throws<CsvCustomException>(() => deligate.Invoke("C:/Users/User/source/repos/IndianStateCensusAnalyser/StateCensusData.csv", CsvStateCensusHeader, CsvStateCodeHeader));
             Assert.AreEqual("Incorrect file Path", ex.Message);
         }
 
@@ -31,7 +38,8 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectFileExtension()
         {
             var analyser = new StateCensusAnalyser();
-            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().LoadCsvData("C:/Users/User/source/repos/StateCensusData.txt", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode"));
+            StateCensusAnalyserDelegate deligate = new StateCensusAnalyserDelegate(analyser.LoadCsvData);
+            var ex = Assert.Throws<CsvCustomException>(() => deligate.Invoke("C:/Users/User/source/repos/StateCensusData.txt", CsvStateCensusHeader, CsvStateCodeHeader));
             Assert.AreEqual("Incorrect file Extension", ex.Message);
         }
 
@@ -40,7 +48,8 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectDelimeter()
         {
             var analyser = new StateCensusAnalyser();
-            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().LoadCsvData("C:/Users/User/source/repos/StateCensusData.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode"));
+            StateCensusAnalyserDelegate deligate = new StateCensusAnalyserDelegate(analyser.LoadCsvData);
+            var ex = Assert.Throws<CsvCustomException>(() => deligate.Invoke("C:/Users/User/source/repos/StateCensusData.csv", CsvStateCensusHeader, CsvStateCodeHeader));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
 
@@ -49,7 +58,8 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectHeader()
         {
             var analyser = new StateCensusAnalyser();
-            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().LoadCsvData("C:/Users/User/source/repos/StateCensusData.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode"));
+            StateCensusAnalyserDelegate deligate = new StateCensusAnalyserDelegate(analyser.LoadCsvData);
+            var ex = Assert.Throws<CsvCustomException>(() => deligate.Invoke("C:/Users/User/source/repos/StateCensusData.csv", CsvStateCensusHeader, CsvStateCodeHeader));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
 
@@ -58,7 +68,8 @@ namespace IndianStateCensusAnalyserTest
         public void recordMatchesForStateCode()
         {
             CsvStates analyser = new CsvStates();
-            object totalRecords = analyser.LoadCsvData();
+            CsvStateCodeDeligate deligate = new CsvStateCodeDeligate(analyser.LoadCsvData);
+            object totalRecords = deligate.Invoke();
             Assert.AreEqual(38, totalRecords);
         }
 
@@ -67,7 +78,8 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectFilePathForStateCode()
         {
             var analyser = new StateCensusAnalyser();
-            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().LoadCsvData("C:/Users/User/source/repos/IndianStateCensusAnalyser/StateCode.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode"));
+            StateCensusAnalyserDelegate deligate = new StateCensusAnalyserDelegate(analyser.LoadCsvData);
+            var ex = Assert.Throws<CsvCustomException>(() => deligate.Invoke("C:/Users/User/source/repos/IndianStateCensusAnalyser/StateCode.csv", CsvStateCensusHeader, CsvStateCodeHeader));
             Assert.AreEqual("Incorrect file Path", ex.Message);
         }
 
@@ -76,7 +88,8 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectFileExtensionForStateCode()
         {
             var analyser = new StateCensusAnalyser();
-            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().LoadCsvData("C:/Users/User/source/repos/StateCode.txt", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode"));
+            StateCensusAnalyserDelegate deligate = new StateCensusAnalyserDelegate(analyser.LoadCsvData);
+            var ex = Assert.Throws<CsvCustomException>(() => deligate.Invoke("C:/Users/User/source/repos/StateCode.txt", CsvStateCensusHeader, CsvStateCodeHeader));
             Assert.AreEqual("Incorrect file Extension", ex.Message);
         }
 
@@ -85,7 +98,8 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectDelimeterForStateCode()
         {
             var analyser = new StateCensusAnalyser();
-            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().LoadCsvData("C:/Users/User/source/repos/StateCode.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode"));
+            StateCensusAnalyserDelegate deligate = new StateCensusAnalyserDelegate(analyser.LoadCsvData);
+            var ex = Assert.Throws<CsvCustomException>(() => deligate.Invoke("C:/Users/User/source/repos/StateCode.csv", CsvStateCensusHeader, CsvStateCodeHeader));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
 
@@ -94,7 +108,8 @@ namespace IndianStateCensusAnalyserTest
         public void incorrectHeaderForStateCode()
         {
             var analyser = new StateCensusAnalyser();
-            var ex = Assert.Throws<CsvCustomException>(() => new StateCensusAnalyser().LoadCsvData("C:/Users/User/source/repos/StateCode.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode"));
+            StateCensusAnalyserDelegate deligate = new StateCensusAnalyserDelegate(analyser.LoadCsvData);
+            var ex = Assert.Throws<CsvCustomException>(() => deligate.Invoke("C:/Users/User/source/repos/StateCode.csv", CsvStateCensusHeader, CsvStateCodeHeader));
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
 

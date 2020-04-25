@@ -8,9 +8,14 @@ using System.Threading.Tasks;
 namespace IndianStateCensusAnalyser
 {
     // Load .Csv data
-    public class CsvStateCensus 
+    public class CsvStateCensus : CsvBuilderInterface
     {
+        //Instance variable initialize
         CSVBuilderClass builderClass = new CSVBuilderClass("C:/Users/User/source/repos/StateCensusDataCopy.csv");
+
+        //deligate initialize
+        public delegate object CsvStateCensusDeligate();
+
         public object LoadCsvData()
         {
             string[] records = builderClass.Records;
@@ -43,6 +48,11 @@ namespace IndianStateCensusAnalyser
                 }
             }
             return records.Length;
+        }
+
+        public object LoadCsvData(string path, string header1, string header2)
+        {
+            throw new NotImplementedException();
         }
     }
 }

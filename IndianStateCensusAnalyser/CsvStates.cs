@@ -9,9 +9,15 @@ using LumenWorks.Framework.IO.Csv;
 namespace IndianStateCensusAnalyser
 {
     //load .Csv data of State Code 
-    public class CsvStates 
+    public class CsvStates : CsvBuilderInterface
     {
+        //Instance variable initialize
         CSVBuilderClass builderClass = new CSVBuilderClass("C:/Users/User/source/repos/StateCodeCopy.csv");
+
+        //deligate initialize
+        public delegate object CsvStateCodeDeligate();
+
+        //Load Csv data 
         public object LoadCsvData()
         {
             string[] records = builderClass.Records;
@@ -44,6 +50,11 @@ namespace IndianStateCensusAnalyser
                 }
             }
             return records.Length;
+        }
+
+        public object LoadCsvData(string path, string header1, string header2)
+        {
+            throw new NotImplementedException();
         }
     }
 }
