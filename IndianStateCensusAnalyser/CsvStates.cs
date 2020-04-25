@@ -11,32 +11,39 @@ namespace IndianStateCensusAnalyser
     //load .Csv data of State Code 
     public class CsvStates 
     {
-        public object LoadCsvData(string filepath)
+        CSVBuilderClass builderClass = new CSVBuilderClass("C:/Users/User/source/repos/StateCodeCopy.csv");
+        public object LoadCsvData()
         {
-            //variable initialize
-            int count = 0;
+            string[] records = builderClass.Records;
 
-            //Read .Csv file
-            var reader = new StreamReader(File.OpenRead(filepath));
+            //Varibale
+            int values = 0;
 
-            List<string> listB = new List<string>();
-            while (!reader.EndOfStream)
+            //Use Dictionary For Maping
+            Dictionary<int, Dictionary<string, string>> keyValuePairs = new Dictionary<int, Dictionary<string, string>>();
+
+            string[] headerKey = records[0].Split(",");
+            Dictionary<string, string> valuePairs = null;///Map
+            for (int index = 1; index < records.Length; index++)
             {
-
-                var line = reader.ReadLine();
-                var values = line.Split(',');
-
-                listB.Add(values[0]);
-                listB.Add(values[1]);
-                listB.Add(values[2]);
-                listB.Add(values[3]);
-                count++;
-                Console.WriteLine(line);
+                string[] value = records[index].Split(",");
+                valuePairs = new Dictionary<string, string>();
+                for (int index1 = 0; index1 < value.Length; index1++)
+                {
+                    valuePairs.Add(headerKey[index1], value[index1]);
+                }
+                keyValuePairs.Add(values, valuePairs);
+                values++;
             }
-
-            //Display total records
-            Console.Write("Total number of records are : ");
-            return count;
+            foreach (var index in keyValuePairs)
+            {
+                Console.WriteLine(index.Key);
+                foreach (var index1 in index.Value)
+                {
+                    Console.WriteLine(index1.Key + " , " + index1.Value);
+                }
+            }
+            return records.Length;
         }
     }
 }

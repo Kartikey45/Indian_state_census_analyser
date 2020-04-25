@@ -5,7 +5,7 @@ using System.Text;
 namespace IndianStateCensusAnalyser
 {
     //Interface 
-    public interface CsvBuilder
+    public interface CsvBuilderInterface
     {
         public object LoadCsvData(string path, string header1, string header2);
     }

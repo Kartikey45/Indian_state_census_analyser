@@ -9,7 +9,7 @@ using LumenWorks.Framework.IO.Csv;
 namespace IndianStateCensusAnalyser
 {
 
-    public class StateCensusAnalyser : CsvBuilder
+    public class StateCensusAnalyser : CsvBuilderInterface
     {
         //Variable Initialized
         private string CsvFilePath;
