@@ -13,7 +13,7 @@ namespace IndianStateCensusAnalyserTest
         public void recordMatches()
         {
             CsvStateCensus analyser = new CsvStateCensus();
-            object totalRecords = analyser.LoadCsvData("C:/Users/User/source/repos/StateCensusDataCopy.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode");
+            object totalRecords = analyser.LoadCsvData();
             Assert.AreEqual(30, totalRecords);
         }
 
@@ -58,7 +58,7 @@ namespace IndianStateCensusAnalyserTest
         public void recordMatchesForStateCode()
         {
             CsvStates analyser = new CsvStates();
-            object totalRecords = analyser.LoadCsvData("C:/Users/User/source/repos/StateCodeCopy.csv", "State,Population,AreaInSqKm,DensityPerSqKm", "SrNo,StateName,TIN,StateCode");
+            object totalRecords = analyser.LoadCsvData("C:/Users/User/source/repos/StateCodeCopy.csv");
             Assert.AreEqual(38, totalRecords);
         }
 
@@ -98,7 +98,7 @@ namespace IndianStateCensusAnalyserTest
             Assert.AreEqual("Delimeter or Header is incorrect", ex.Message);
         }
 
-        //Test case to check start and end data of state census JSON data
+        //Test cases to check start and end data of state census JSON data
         [Test]
         public void checkStartOfStateCensus()
         {
@@ -115,7 +115,7 @@ namespace IndianStateCensusAnalyserTest
             Assert.AreEqual("West Bengal",checkResult);
         }
 
-        //Test case to check start and end data of state code JSON data
+        //Test cases to check start and end data of state code JSON data
         [Test]
         public void checkStartOfStateCode()
         {

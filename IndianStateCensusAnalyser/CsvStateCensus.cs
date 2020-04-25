@@ -8,48 +8,42 @@ using System.Threading.Tasks;
 namespace IndianStateCensusAnalyser
 {
     // Load .Csv data
-    public class CsvStateCensus : CsvBuilder
+    public class CsvStateCensus 
     {
-        private string CsvFilePath;
-        private string StateCensusFileHeader;
-        private string StateCodeFileHeader;
-
-        //Deligate initialized
-        public delegate object CsvFile(string filepath, string StateCensusHeader, string StateCodeHeader);
-
-        public object LoadCsvData(string filepath, string StateCensusHeader, string StateCodeHeader)
+        CSVBuilderClass builderClass = new CSVBuilderClass("C:/Users/User/source/repos/StateCensusDataCopy.csv");
+        public object LoadCsvData()
         {
-            //Variable Initialized
-            CsvFilePath = filepath;
-            StateCensusFileHeader = StateCensusHeader;
-            StateCodeFileHeader = StateCodeHeader;
+            string[] records = builderClass.Records;
 
-            //variable initialize
-            int count = 0;
-            Console.WriteLine("Welcome to Indian State Census Analyser Problem");
-            
-            
-            //Read .Csv file
-            var reader = new StreamReader(File.OpenRead(CsvFilePath));
+            //Varibale
+            int values = 0;
 
-            List<string> listA = new List<string>();
-            while (!reader.EndOfStream)
+            //Use Dictionary For Maping
+            Dictionary<int, Dictionary<string, string>> keyValuePairs = new Dictionary<int, Dictionary<string, string>>();
+
+            string[] headerKey = records[0].Split(",");
+            Dictionary<string, string> valuePairs = null;///Map
+            for (int index = 1; index < records.Length; index++)
             {
-
-                var line = reader.ReadLine();
-                var values = line.Split(',');
-
-                listA.Add(values[0]);
-                listA.Add(values[1]);
-                listA.Add(values[2]);
-                listA.Add(values[3]);
-                count++;
-                Console.WriteLine(line);
+                string[] value = records[index].Split(",");
+                valuePairs = new Dictionary<string, string>();
+                for (int index1 = 0; index1 < value.Length; index1++)
+                {
+                    valuePairs.Add(headerKey[index1], value[index1]);
+                }
+                keyValuePairs.Add(values, valuePairs);
+                values++;
             }
-            
-            //Display total records
-            Console.Write("Total number of records are : ");
-            return count;
+            foreach (var index in keyValuePairs)
+            {
+                Console.WriteLine(index.Key);
+                foreach (var index1 in index.Value)
+                {
+                    Console.WriteLine(index1.Key + " , " + index1.Value);
+                }
+            }
+            return records.Length;
         }
     }
 }
+
