@@ -152,16 +152,16 @@ namespace IndianStateCensusAnalyserTest
         public void checkStartOfStateCensusUc5()
         {
             Analyser analyser = new Analyser();
-            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataUC5.json", "Population", 0);
-            Assert.AreEqual("91347736", checkResult);
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataUC5.json", "State", 0);
+            Assert.AreEqual("West Bengal", checkResult);
         }
 
         [Test]
         public void checkEndOfStateCensusUc5()
         {
             Analyser analyser = new Analyser();
-            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataUC5.json", "Population", 1);
-            Assert.AreEqual("10116752", checkResult);
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataUC5.json", "State", 1);
+            Assert.AreEqual("Uttarakhand", checkResult);
         }
 
         

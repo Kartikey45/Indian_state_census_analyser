@@ -70,7 +70,20 @@ namespace IndianStateCensusAnalyser
             return null;
         }
 
-
-        
+        /*
+        // Sorting CSV Data
+        public void SortingCSVFilePopulousState(string path)
+        {
+            var lines = File.ReadLines(path, Encoding.Default);
+            var data = lines
+                       .Skip(1)
+                       .Select(l => new { Fields = l.Split(';'), Line = l })
+                       .Where(x => x.Fields.Length == 30 && x.Fields[3].All(Char.IsDigit))
+                       .OrderBy(x => int.Parse(x.Fields[1]))
+                       .ThenBy(x => x.Fields[0])
+                       .Select(x => x.Line);
+            File.WriteAllLines(path, lines.Take(1).Concat(data), Encoding.Default);
+        }
+        */
     }
 }
