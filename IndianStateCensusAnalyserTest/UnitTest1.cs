@@ -146,5 +146,24 @@ namespace IndianStateCensusAnalyserTest
             string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCodeCopy.json", "StateCode", 1);
             Assert.AreEqual("WB", checkResult);
         }
+
+        //Test cases to check start and end data of state census JSON data of UC 5
+        [Test]
+        public void checkStartOfStateCensusUc5()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataUC5.json", "Population", 0);
+            Assert.AreEqual("91347736", checkResult);
+        }
+
+        [Test]
+        public void checkEndOfStateCensusUc5()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataUC5.json", "Population", 1);
+            Assert.AreEqual("10116752", checkResult);
+        }
+
+        
     }
 }
