@@ -46,7 +46,6 @@ namespace IndianStateCensusAnalyser
 
             IEnumerable<string> query = from line in data let x = line.Split(',') orderby x[1] descending select line;
             File.WriteAllLines(path, lines.Take(1).Concat(query.ToArray()));
-            
         }
 
         //check starting data and ending data of JSON data
@@ -70,20 +69,20 @@ namespace IndianStateCensusAnalyser
             return null;
         }
 
-        /*
-        // Sorting CSV Data
-        public void SortingCSVFilePopulousState(string path)
+        //Sorting Csv data
+        public void SortingCSVFileForMostPopulousDensityState(string path)
         {
-            var lines = File.ReadLines(path, Encoding.Default);
-            var data = lines
-                       .Skip(1)
-                       .Select(l => new { Fields = l.Split(';'), Line = l })
-                       .Where(x => x.Fields.Length == 30 && x.Fields[3].All(Char.IsDigit))
-                       .OrderBy(x => int.Parse(x.Fields[1]))
-                       .ThenBy(x => x.Fields[0])
-                       .Select(x => x.Line);
-            File.WriteAllLines(path, lines.Take(1).Concat(data), Encoding.Default);
+            string[] lines = File.ReadAllLines(path, Encoding.Default);
+
+            var data = lines.Skip(1);
+            var sorted = data.Select(line => new
+            {
+                SortKey = Int32.Parse(line.Split(',')[1]),
+                SortKeyThenBy = Int32.Parse(line.Split(',')[3]),
+                Line = line
+            }
+            ).OrderByDescending(x => x.SortKey).ThenBy(x => x.SortKeyThenBy).Select(x => x.Line);
+            File.WriteAllLines(path, lines.Take(1).Concat(sorted), Encoding.Default);
         }
-        */
     }
 }

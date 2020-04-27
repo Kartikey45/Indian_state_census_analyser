@@ -163,7 +163,5 @@ namespace IndianStateCensusAnalyserTest
             string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataUC5.json", "State", 1);
             Assert.AreEqual("Uttarakhand", checkResult);
         }
-
-        
     }
 }
