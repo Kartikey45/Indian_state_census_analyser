@@ -9,6 +9,7 @@ namespace IndianStateCensusAnalyser
     {
         private string path;
         private string[] records;
+        private string record;
 
         public CSVBuilderClass()
         {
@@ -25,6 +26,15 @@ namespace IndianStateCensusAnalyser
             {
                 records = File.ReadAllLines(path);
                 return records;
+            }
+        }
+
+        public string Record
+        {
+            get
+            {
+                record = File.ReadAllText(path);
+                return record;
             }
         }
     }

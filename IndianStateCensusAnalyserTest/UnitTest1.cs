@@ -68,8 +68,7 @@ namespace IndianStateCensusAnalyserTest
         public void recordMatchesForStateCode()
         {
             CsvStates analyser = new CsvStates();
-            CsvStateCodeDeligate deligate = new CsvStateCodeDeligate(analyser.LoadCsvData);
-            object totalRecords = deligate.Invoke();
+            object totalRecords = analyser.LoadCsvData("C:/Users/User/source/repos/StateCodeCopy.csv");
             Assert.AreEqual(38, totalRecords);
         }
 
