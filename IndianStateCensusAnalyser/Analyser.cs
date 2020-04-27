@@ -44,8 +44,9 @@ namespace IndianStateCensusAnalyser
             //Skip Header
             var data = lines.Skip(1);
 
-            IEnumerable<string> query = from line in data let x = line.Split(',') orderby x[3] select line;
+            IEnumerable<string> query = from line in data let x = line.Split(',') orderby x[1] descending select line;
             File.WriteAllLines(path, lines.Take(1).Concat(query.ToArray()));
+            
         }
 
         //check starting data and ending data of JSON data

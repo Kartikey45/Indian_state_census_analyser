@@ -14,10 +14,16 @@ namespace IndianStateCensusAnalyser
         //Main method
         public static void Main()
         {
+            /*
             CsvStates census = new CsvStates();
             CsvStateCodeDeligate deligate = new CsvStateCodeDeligate(census.LoadCsvData);
             deligate.Invoke();
             Console.ReadKey();
+            */
+
+            Analyser analyser = new Analyser();
+            analyser.SortingCSVFile("C:/Users/User/source/repos/StateCensusDataCopy.Csv");
+            analyser.ConvertingCSVToJSON("C:/Users/User/source/repos/StateCensusDataCopy.csv", "C:/Users/User/source/repos/StateCensusDataUC5.json");
         }
     }
 }
