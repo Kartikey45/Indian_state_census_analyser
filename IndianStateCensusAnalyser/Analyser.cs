@@ -70,18 +70,17 @@ namespace IndianStateCensusAnalyser
         }
 
         //Sorting Csv data
-        public void SortingCSVFileForMostPopulousDensityState(string path)
+        public void SortingCSVFileForLargestStateByArea(string path)
         {
             string[] lines = File.ReadAllLines(path, Encoding.Default);
 
             var data = lines.Skip(1);
             var sorted = data.Select(line => new
             {
-                SortKey = Int32.Parse(line.Split(',')[1]),
-                SortKeyThenBy = Int32.Parse(line.Split(',')[3]),
+                SortKey = Int32.Parse(line.Split(',')[2]),
                 Line = line
             }
-            ).OrderByDescending(x => x.SortKey).ThenBy(x => x.SortKeyThenBy).Select(x => x.Line);
+            ).OrderByDescending(x => x.SortKey).Select(x => x.Line);
             File.WriteAllLines(path, lines.Take(1).Concat(sorted), Encoding.Default);
         }
     }

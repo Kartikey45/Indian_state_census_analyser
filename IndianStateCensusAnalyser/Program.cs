@@ -15,8 +15,8 @@ namespace IndianStateCensusAnalyser
         public static void Main()
         {
             Analyser analyser = new Analyser();
-            analyser.SortingCSVFileForMostPopulousDensityState("C:/Users/User/source/repos/StateCensusDataCopy.Csv");
-            analyser.ConvertingCSVToJSON("C:/Users/User/source/repos/StateCensusDataCopy.csv", "C:/Users/User/source/repos/StateCensusDataUC6.json");
+            analyser.SortingCSVFileForLargestStateByArea("C:/Users/User/source/repos/StateCensusDataCopy.Csv");
+            analyser.ConvertingCSVToJSON("C:/Users/User/source/repos/StateCensusDataCopy.csv", "C:/Users/User/source/repos/StateCensusDataUC7.json");
         }
     }
 }
