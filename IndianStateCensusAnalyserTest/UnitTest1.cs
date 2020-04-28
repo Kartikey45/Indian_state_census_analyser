@@ -18,8 +18,7 @@ namespace IndianStateCensusAnalyserTest
         public void recordMatches()
         {
             CsvStateCensus analyser = new CsvStateCensus();
-            CsvStateCensusDeligate deligate = new CsvStateCensusDeligate(analyser.LoadCsvData);
-            object totalRecords = deligate.Invoke();
+            object totalRecords = analyser.StateCensusData("C:/Users/User/source/repos/StateCensusDataCopy.csv");
             Assert.AreEqual(30, totalRecords);
         }
 
@@ -68,7 +67,7 @@ namespace IndianStateCensusAnalyserTest
         public void recordMatchesForStateCode()
         {
             CsvStates analyser = new CsvStates();
-            object totalRecords = analyser.LoadCsvData("C:/Users/User/source/repos/StateCodeCopy.csv");
+            object totalRecords = analyser.StateCodeData("C:/Users/User/source/repos/StateCodeCopy.csv");
             Assert.AreEqual(38, totalRecords);
         }
 
