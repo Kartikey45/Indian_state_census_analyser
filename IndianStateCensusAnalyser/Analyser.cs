@@ -69,8 +69,8 @@ namespace IndianStateCensusAnalyser
             return null;
         }
 
-        //Sorting Csv data
-        public void SortingCSVFileForLargestStateByArea(string path)
+        //Sorting Csv data of US Census in order to most Population to least 
+        public void SortingCSVFileInDescendingPopulationOrder(string path)
         {
             string[] lines = File.ReadAllLines(path, Encoding.Default);
 
