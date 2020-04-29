@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using ChoETL;
 using System.Linq;
 using System.Text;
-using static IndianStateCensusAnalyser.USCensusData;
+using static IndianStateCensusAnalyser.CsvUSCensusData;
 
 namespace IndianStateCensusAnalyser
 {
@@ -16,14 +16,11 @@ namespace IndianStateCensusAnalyser
         {
             Console.WriteLine("Welcome to US Census Analyser");
 
-            //Instance variable created
-            Analyser analyser = new Analyser();
+            //Instance variable
+            CsvUSCensusDAO csvUSCensusDAO = new CsvUSCensusDAO();
 
-            //Sorting data in Csv File
-            analyser.SortingCSVFileInDescendingPopulationOrder("C:/Users/User/source/repos/USCensusData.csv");
-
-            //Coverting Csv into JSON formate
-            analyser.ConvertingCSVToJSON("C:/Users/User/source/repos/USCensusData.csv", "C:/Users/User/source/repos/USCensusData.json");
+            //Load and display Us census data
+            csvUSCensusDAO.LoadCensusData();
 
             Console.ReadKey();
         }
