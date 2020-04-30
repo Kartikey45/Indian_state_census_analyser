@@ -14,13 +14,12 @@ namespace IndianStateCensusAnalyser
         //Main method
         public static void Main()
         {
-            Console.WriteLine("Welcome to US Census Analyser");
+            Console.WriteLine("Welcome to Indian Census");
 
-            //Instance variable
-            CsvUSCensusDAO csvUSCensusDAO = new CsvUSCensusDAO();
+            ReadCensusData censusData = new ReadCensusData();
+            censusData.ReadCsvFile();
 
-            //Load and display Us census data
-            csvUSCensusDAO.LoadCensusData();
+
 
             Console.ReadKey();
         }

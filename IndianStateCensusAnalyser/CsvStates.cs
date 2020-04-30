@@ -14,8 +14,8 @@ namespace IndianStateCensusAnalyser
         public object StateCodeData(string filePath)
         {
             string[] data = File.ReadAllLines(filePath);
-            CsvReadAdapter csvReadAdapter = new CsvReadAdapter();
-            csvReadAdapter.ReadCsvFile(filePath);
+            ReadCensusData csvReadAdapter = new ReadCensusData();
+            csvReadAdapter.ReadCsvFile();
             return data.Length;
         }
     }

@@ -6,13 +6,16 @@ using LumenWorks.Framework.IO.Csv;
 
 namespace IndianStateCensusAnalyser
 {
-    public class CsvReadAdapter
+    public class ReadCensusData
     {
-        public object ReadCsvFile(string CsvFilePath)
+        public object ReadCsvFile()
         {
+            IndianCensusDTO csvPath = new IndianCensusDTO("C:/Users/User/source/repos/StateCensusDataCopy.csv", "C:/Users/User/source/repos/StateCodeCopy.csv");
+            string path = csvPath.StateCensusPath;
+
             int count = 0;
             using (CsvReader csv =
-           new CsvReader(new StreamReader(CsvFilePath), true))
+           new CsvReader(new StreamReader(path), true))
             {
                 int fieldCount = csv.FieldCount;
 
