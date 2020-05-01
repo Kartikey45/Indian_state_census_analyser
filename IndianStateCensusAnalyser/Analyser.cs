@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IndianStateCensusAnalyser
 {
+    //Sorting and Converting into JSON formate
     public class Analyser
     {
         //Read Data
@@ -17,23 +18,6 @@ namespace IndianStateCensusAnalyser
         {
             string[] data = File.ReadAllLines(path);
             return data.Length;
-        }
-
-        //Coverting CSV To JSON
-        public void ConvertingCSVToJSON(string path, string destination)
-        {
-            //Read CSV Data
-            string csv = File.ReadAllText(path);
-
-            StringBuilder builder = new StringBuilder();
-            using (var p = ChoCSVReader.LoadText(csv).WithFirstLineHeader())
-            {
-                var w = new ChoJSONWriter(builder);
-                w.Write(p);
-            }
-
-            //Data Storing In Destination Path(File) 
-            File.WriteAllText(destination, builder.ToString());
         }
 
         // Sorting CSV Data
@@ -82,6 +66,53 @@ namespace IndianStateCensusAnalyser
             }
             ).OrderByDescending(x => x.SortKey).Select(x => x.Line);
             File.WriteAllLines(path, lines.Take(1).Concat(sorted), Encoding.Default);
+        }
+
+        //Sorting Csv data of US Census in order to most Population densisty to least 
+        public void SortingCSVFileInDescendingPopulationDesnsityOrder(string path)
+        {
+            string[] lines = File.ReadAllLines(path, Encoding.Default);
+
+            var data = lines.Skip(1);
+            var sorted = data.Select(line => new
+            {
+                SortKey = double.Parse(line.Split(',')[7]),
+                Line = line
+            }
+            ).OrderByDescending(x => x.SortKey).Select(x => x.Line);
+            File.WriteAllLines(path, lines.Take(1).Concat(sorted), Encoding.Default);
+        }
+
+        //Sorting Csv data of US Census in order to most Total area to least 
+        public void SortingCSVFileInDescendingTotalAreaOrder(string path)
+        {
+            string[] lines = File.ReadAllLines(path, Encoding.Default);
+
+            var data = lines.Skip(1);
+            var sorted = data.Select(line => new
+            {
+                SortKey = double.Parse(line.Split(',')[4]),
+                Line = line
+            }
+            ).OrderByDescending(x => x.SortKey).Select(x => x.Line);
+            File.WriteAllLines(path, lines.Take(1).Concat(sorted), Encoding.Default);
+        }
+
+        //Coverting CSV To JSON
+        public void ConvertingCSVToJSON(string path, string destination)
+        {
+            //Read CSV Data
+            string csv = File.ReadAllText(path);
+
+            StringBuilder builder = new StringBuilder();
+            using (var p = ChoCSVReader.LoadText(csv).WithFirstLineHeader())
+            {
+                var w = new ChoJSONWriter(builder);
+                w.Write(p);
+            }
+
+            //Data Storing In Destination Path(File) 
+            File.WriteAllText(destination, builder.ToString());
         }
     }
 }

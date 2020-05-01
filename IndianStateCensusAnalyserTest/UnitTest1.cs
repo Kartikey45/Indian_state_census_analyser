@@ -161,5 +161,54 @@ namespace IndianStateCensusAnalyserTest
             string checkResult = analyser.CheckData("C:/Users/User/source/repos/StateCensusDataUC5.json", "State", 1);
             Assert.AreEqual("Uttarakhand", checkResult);
         }
+
+        //Test cases of US Census JSON format Most to least state
+        [Test]
+        public void checkMostPopulousState()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/IndianStateCensusAnalyser/USCensusDataPopulation.json", "State", 0);
+            Assert.AreEqual("California", checkResult);
+        }
+
+        [Test]
+        public void checkLeastPopulousState()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/IndianStateCensusAnalyser/USCensusDataPopulation.json", "State", 1);
+            Assert.AreEqual("Wyoming", checkResult);
+        }
+
+        [Test]
+        public void checkMostPopulationDensityState()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/IndianStateCensusAnalyser/USCensusDataPopulationDensity.json", "State", 0);
+            Assert.AreEqual("District of Columbia", checkResult);
+        }
+
+        [Test]
+        public void checkLeastPopulationDensityState()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/IndianStateCensusAnalyser/USCensusDataPopulationDensity.json", "State", 1);
+            Assert.AreEqual("Alaska", checkResult);
+        }
+
+        [Test]
+        public void checkLargestTotalAreaState()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/IndianStateCensusAnalyser/USCensusDataTotalArea.json", "State", 0);
+            Assert.AreEqual("Alaska", checkResult);
+        }
+
+        [Test]
+        public void checkSmallestTotalAreaState()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/IndianStateCensusAnalyser/USCensusDataTotalArea.json", "State", 1);
+            Assert.AreEqual("District of Columbia", checkResult);
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace IndianStateCensusAnalyser
     {
         private string StateCensusFilePath;
         private string StateCodeFilePath;
-
+        private string USCensusFilePath;
         public IndianCensusDTO(string stateCensusFilePath, string stateCodeFilePath)
         {
             StateCensusFilePath = stateCensusFilePath;

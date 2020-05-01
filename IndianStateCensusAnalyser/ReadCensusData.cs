@@ -15,7 +15,7 @@ namespace IndianStateCensusAnalyser
 
             int count = 0;
             using (CsvReader csv =
-           new CsvReader(new StreamReader(path), true))
+            new CsvReader(new StreamReader(path), true))
             {
                 int fieldCount = csv.FieldCount;
 
