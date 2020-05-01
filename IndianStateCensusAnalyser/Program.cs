@@ -29,7 +29,11 @@ namespace IndianStateCensusAnalyser
             //US specific JSON formate from most Total Area to least
             analyser.SortingCSVFileInDescendingTotalAreaOrder("C:/Users/User/source/repos/USCensusData.csv");
             analyser.ConvertingCSVToJSON("C:/Users/User/source/repos/USCensusData.csv", "C:/Users/User/source/repos/IndianStateCensusAnalyser/USCensusDataTotalArea.json");
-            
+
+            //India Census JSON formate fom most Populous state to least
+            analyser.SortingCSVFileInDescendingPopulationOfIndianCensus("C:/Users/User/source/repos/StateCensusDataCopy.csv");
+            analyser.ConvertingCSVToJSON("C:/Users/User/source/repos/StateCensusDataCopy.csv", "C:/Users/User/source/repos/IndianStateCensusAnalyser/IndianCensusDataPopulation.json");
+
             Console.ReadKey();
         }
     }

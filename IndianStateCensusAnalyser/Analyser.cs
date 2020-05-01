@@ -98,6 +98,21 @@ namespace IndianStateCensusAnalyser
             File.WriteAllLines(path, lines.Take(1).Concat(sorted), Encoding.Default);
         }
 
+        //Sorting Csv data of indian state Census in order to most Population to least
+        public void SortingCSVFileInDescendingPopulationOfIndianCensus(string path)
+        {
+            string[] lines = File.ReadAllLines(path, Encoding.Default);
+
+            var data = lines.Skip(1);
+            var sorted = data.Select(line => new
+            {
+                SortKey = double.Parse(line.Split(',')[1]),
+                Line = line
+            }
+            ).OrderByDescending(x => x.SortKey).Select(x => x.Line);
+            File.WriteAllLines(path, lines.Take(1).Concat(sorted), Encoding.Default);
+        }
+
         //Coverting CSV To JSON
         public void ConvertingCSVToJSON(string path, string destination)
         {

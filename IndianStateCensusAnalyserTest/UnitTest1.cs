@@ -210,5 +210,24 @@ namespace IndianStateCensusAnalyserTest
             string checkResult = analyser.CheckData("C:/Users/User/source/repos/IndianStateCensusAnalyser/USCensusDataTotalArea.json", "State", 1);
             Assert.AreEqual("District of Columbia", checkResult);
         }
+
+        //Test cases of India and US the most populous state with density
+        [Test]
+        public void checkMostPopulatedDensityOfIndia()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/IndianStateCensusAnalyser/IndianCensusDataPopulation.json", "DensityPerSqKm", 0);
+            Assert.AreEqual("828", checkResult);
+        }
+
+        [Test]
+        public void checkMostPopulatedDensityOfUS()
+        {
+            Analyser analyser = new Analyser();
+            string checkResult = analyser.CheckData("C:/Users/User/source/repos/IndianStateCensusAnalyser/USCensusDataPopulation.json", "Population Density", 0);
+            Assert.AreEqual("92.32", checkResult);
+        }
+
+
     }
 }
